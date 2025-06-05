@@ -1,10 +1,9 @@
-const withNextIntl = require('next-intl/plugin')();
+import withNextIntl from 'next-intl/plugin.js';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Add your Next.js config here
   reactStrictMode: true,
   swcMinify: true,
 };
 
-module.exports = withNextIntl(nextConfig);
+export default withNextIntl(nextConfig);
