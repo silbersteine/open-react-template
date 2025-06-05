@@ -1,4 +1,6 @@
 "use client";
+import { useTranslations } from "next-intl";
+
 
 import { useState, useRef } from "react";
 import type { StaticImageData } from "next/image";
@@ -25,6 +27,8 @@ export default function ModalVideo({
   videoWidth,
   videoHeight,
 }: ModalVideoProps) {
+const t = useTranslations("../components");
+
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -40,7 +44,7 @@ export default function ModalVideo({
           src={SecondaryIllustration}
           width={1165}
           height={1012}
-          alt="Secondary illustration"
+          alt={t('secondary-illustration')}
         />
       </div>
 
@@ -93,11 +97,7 @@ export default function ModalVideo({
                 </linearGradient>
               </defs>
             </svg>
-            <span className="text-sm font-medium leading-tight text-gray-300">
-              Watch Demo
-              <span className="text-gray-600"> - </span>
-              3:47
-            </span>
+            <span className="text-sm font-medium leading-tight text-gray-300">{t('watch-demo-video-duration', { "component0": <span className="text-gray-600">{t('watch-demo-video-duration_component0')}</span> })}</span>
           </span>
         </span>
       </button>
@@ -125,9 +125,7 @@ export default function ModalVideo({
                 loop
                 controls
               >
-                <source src={video} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+                <source src={video} type="video/mp4" />{t('video-tag-support-message')}</video>
             </DialogPanel>
           </div>
         </div>
